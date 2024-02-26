@@ -1,6 +1,7 @@
 import React from 'react';
 import Quiz from './components/Quiz';
 import './App.css';
+import './styles/styles.css';
 
 const App = () => {
   // Sample questions data

@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import Question from './Question';
 import Score from './Score';
+import quizData from './QuizData';
 
-const Quiz = ({ questions }) => {
+const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleAnswer = (isCorrect) => {
+  const handleAnswer = () => {
+    const isCorrect = selectedOption === quizData[currentQuestionIndex].correctAnswer;
     if (isCorrect) {
       setScore(score + 1);
     }
     const nextQuestionIndex = currentQuestionIndex + 1;
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
-    } else {
-      // Quiz is finished
-      // You can handle what happens when the quiz is finished, like showing the final score
-      console.log('Quiz finished. Final score:', score);
-    }
+    setCurrentQuestionIndex(nextQuestionIndex);
+    setSelectedOption(null); // Reset selected option after answering
   };
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  const currentQuestion = quizData[currentQuestionIndex];
 
   return (
     <div>
-      {/* Render Question component with current question */}
       <Question
-        question={questions[currentQuestionIndex]}
+        question={currentQuestion}
         handleAnswer={handleAnswer}
+        selectedOption={selectedOption}
+        handleOptionChange={handleOptionChange}
       />
-      {/* Render Score component */}
       <Score score={score} />
     </div>
   );
