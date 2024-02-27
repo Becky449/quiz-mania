@@ -16,8 +16,8 @@ const App = () => {
   ];
 
   return (
-    <div>
-      <h1>Quiz Mania</h1>
+    <div className='interface'>
+      <h1 className='title'>Quiz Mania</h1>
       <Quiz questions={questions} />
     </div>
   );

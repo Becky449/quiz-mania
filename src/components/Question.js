@@ -11,21 +11,21 @@ const Question = ({ question, handleAnswer }) => {
   return (
     <div>
       <h2>{prompt}</h2>
-      <ul>
+      <div>
         {options.map((option, index) => (
-          <li key={index}>
+          <div key={index}>
             <label>
               <input
-                type="radio"
+                type="checkbox"
                 name="options"
                 value={option}
                 onChange={handleRadioChange}
               />
               {option}
             </label>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
