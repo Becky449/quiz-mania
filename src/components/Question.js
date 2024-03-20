@@ -3,20 +3,29 @@ import React from 'react';
 const Question = ({ question, handleAnswer }) => {
   const { prompt, options } = question;
 
-  const handleClick = (option) => {
-    handleAnswer(option === question.correctAnswer);
+  const handleRadioChange = (event) => {
+    const selectedOption = event.target.value;
+    handleAnswer(selectedOption);
   };
 
   return (
     <div>
       <h2>{prompt}</h2>
-      <ul>
+      <div>
         {options.map((option, index) => (
-          <li key={index} onClick={() => handleClick(option)}>
-            {option}
-          </li>
+          <div key={index}>
+            <label>
+              <input
+                type="checkbox"
+                name="options"
+                value={option}
+                onChange={handleRadioChange}
+              />
+              {option}
+            </label>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
